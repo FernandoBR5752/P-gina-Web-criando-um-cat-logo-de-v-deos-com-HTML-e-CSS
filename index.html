@@ -298,7 +298,7 @@
     </footer>
 
     <script>
-        // Dados dos vídeos atualizados para 2025
+        // Dados dos vídeos com links válidos do YouTube
         const videos = [
             {
                 id: 1,
@@ -309,7 +309,7 @@
                 views: "15.2K",
                 date: "15 de Janeiro, 2025",
                 thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                youtubeUrl: "https://www.youtube.com/watch?v=tec2025"
+                youtubeUrl: "https://www.youtube.com/watch?v=zQ3zgFypYJ4" // TED: The next wave of innovation in tech
             },
             {
                 id: 2,
@@ -320,7 +320,7 @@
                 views: "23.7K",
                 date: "8 de Março, 2025",
                 thumbnail: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                youtubeUrl: "https://www.youtube.com/watch?v=nature2025"
+                youtubeUrl: "https://www.youtube.com/watch?v=1WcMq-5M2U0" // National Geographic: Beautiful Nature
             },
             {
                 id: 3,
@@ -331,7 +331,7 @@
                 views: "42.3K",
                 date: "22 de Fevereiro, 2025",
                 thumbnail: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                youtubeUrl: "https://www.youtube.com/watch?v=travel2025"
+                youtubeUrl: "https://www.youtube.com/watch?v=i9ABM6rRlN0" // Rick Steves: Europe Travel Guide
             },
             {
                 id: 4,
@@ -342,7 +342,7 @@
                 views: "38.9K",
                 date: "5 de Abril, 2025",
                 thumbnail: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                youtubeUrl: "https://www.youtube.com/watch?v=web2025"
+                youtubeUrl: "https://www.youtube.com/watch?v=qz0aGYrrlhU" // Programming with Mosh: HTML Tutorial
             },
             {
                 id: 5,
@@ -353,7 +353,7 @@
                 views: "56.1K",
                 date: "18 de Maio, 2025",
                 thumbnail: "https://images.unsplash.com/photo-1677442135135-416f8aa26a5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                youtubeUrl: "https://www.youtube.com/watch?v=ai2025"
+                youtubeUrl: "https://www.youtube.com/watch?v=ad79nYk2keg" // Artificial Intelligence: The Future
             },
             {
                 id: 6,
@@ -364,7 +364,7 @@
                 views: "29.4K",
                 date: "30 de Junho, 2025",
                 thumbnail: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                youtubeUrl: "https://www.youtube.com/watch?v=ocean2025"
+                youtubeUrl: "https://www.youtube.com/watch?v=GI6CfKcMhjw" // Great Barrier Reef: Nature's Miracle
             },
             {
                 id: 7,
@@ -375,7 +375,7 @@
                 views: "47.8K",
                 date: "12 de Julho, 2025",
                 thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                youtubeUrl: "https://www.youtube.com/watch?v=emerging2025"
+                youtubeUrl: "https://www.youtube.com/watch?v=KbVevlXmX_c" // Emerging Technologies That Will Change the World
             },
             {
                 id: 8,
@@ -386,7 +386,29 @@
                 views: "33.6K",
                 date: "28 de Agosto, 2025",
                 thumbnail: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-                youtubeUrl: "https://www.youtube.com/watch?v=tropical2025"
+                youtubeUrl: "https://www.youtube.com/watch?v=mk7L64kGYj0" // Top 10 Tropical Destinations
+            },
+            {
+                id: 9,
+                title: "Aprendizado de Máquina para Iniciantes",
+                description: "Conceitos básicos de machine learning explicados de forma simples.",
+                category: "educacao",
+                duration: "28:10",
+                views: "41.5K",
+                date: "10 de Setembro, 2025",
+                thumbnail: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                youtubeUrl: "https://www.youtube.com/watch?v=NWONeJKn6kc" // Machine Learning for Beginners
+            },
+            {
+                id: 10,
+                title: "Aventuras na Floresta Amazônica",
+                description: "Explorando a maior floresta tropical do mundo e sua biodiversidade.",
+                category: "natureza",
+                duration: "24:35",
+                views: "37.2K",
+                date: "5 de Outubro, 2025",
+                thumbnail: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                youtubeUrl: "https://www.youtube.com/watch?v=7SB47p_sKQg" // Amazon Rainforest: The Heart of Our Planet
             }
         ];
 
@@ -402,8 +424,9 @@
             
             if (videosArray.length === 0) {
                 videoContainer.innerHTML = `
-                    <div class="no-results">
-                        <p>Nenhum vídeo encontrado. Tente alterar os termos de busca.</p>
+                    <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                        <i class="fas fa-search" style="font-size: 48px; margin-bottom: 20px; color: #64748b;"></i>
+                        <p style="font-size: 18px; color: #94a3b8;">Nenhum vídeo encontrado. Tente alterar os termos de busca.</p>
                     </div>
                 `;
                 return;
