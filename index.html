@@ -40,9 +40,10 @@
             margin-bottom: 10px;
         }
         
-        header p {
-            font-size: 1.1rem;
+        .creator {
+            font-style: italic;
             opacity: 0.9;
+            margin-bottom: 10px;
         }
         
         .search-container {
@@ -115,6 +116,7 @@
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
         }
         
         .video-card:hover {
@@ -137,6 +139,33 @@
         
         .video-card:hover .thumbnail img {
             transform: scale(1.05);
+        }
+        
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(106, 17, 203, 0.8);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0.9;
+            transition: all 0.3s;
+        }
+        
+        .play-icon i {
+            color: white;
+            font-size: 20px;
+            margin-left: 4px;
+        }
+        
+        .video-card:hover .play-icon {
+            background: rgba(37, 117, 252, 0.9);
+            transform: translate(-50%, -50%) scale(1.1);
         }
         
         .duration {
@@ -182,40 +211,68 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
         
         .modal-content {
             background: white;
-            padding: 20px;
             border-radius: 12px;
-            max-width: 800px;
-            width: 90%;
+            max-width: 900px;
+            width: 100%;
             position: relative;
+            overflow: hidden;
         }
         
         .close-btn {
             position: absolute;
             top: 15px;
             right: 15px;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
-            color: #718096;
-            transition: color 0.3s;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transition: background 0.3s;
         }
         
         .close-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .video-player-container {
+            width: 100%;
+            position: relative;
+        }
+        
+        video {
+            width: 100%;
+            display: block;
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .video-info-modal {
+            padding: 20px;
+        }
+        
+        .video-info-modal h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
             color: #2d3748;
         }
         
-        .video-player {
-            width: 100%;
-            aspect-ratio: 16/9;
-            background: #000;
-            margin-bottom: 15px;
+        .video-info-modal p {
+            color: #718096;
+            line-height: 1.6;
         }
         
         footer {
@@ -234,6 +291,10 @@
             
             header h1 {
                 font-size: 2rem;
+            }
+            
+            .modal-content {
+                width: 95%;
             }
         }
         
@@ -261,200 +322,248 @@
     <header>
         <div class="container">
             <h1>Catálogo de Vídeos</h1>
-            <p>Encontre os melhores vídeos em um só lugar</p>
+            <p class="creator">Criado por Fernando</p>
         </div>
     </header>
     
     <div class="container">
         <div class="search-container">
             <div class="search-box">
-                <input type="text" placeholder="Buscar vídeos...">
-                <button><i class="fas fa-search"></i> Buscar</button>
+                <input type="text" id="searchInput" placeholder="Buscar vídeos...">
+                <button id="searchButton"><i class="fas fa-search"></i> Buscar</button>
             </div>
         </div>
         
         <div class="categories">
-            <button class="category-btn active">Todos</button>
-            <button class="category-btn">Tecnologia</button>
-            <button class="category-btn">Educação</button>
-            <button class="category-btn">Entretenimento</button>
-            <button class="category-btn">Esportes</button>
-            <button class="category-btn">Viagens</button>
+            <button class="category-btn active" data-category="all">Todos</button>
+            <button class="category-btn" data-category="tecnologia">Tecnologia</button>
+            <button class="category-btn" data-category="educacao">Educação</button>
+            <button class="category-btn" data-category="natureza">Natureza</button>
+            <button class="category-btn" data-category="viagens">Viagens</button>
         </div>
         
-        <div class="video-grid">
-            <!-- Vídeo 1 -->
-            <div class="video-card" data-category="Tecnologia">
-                <div class="thumbnail">
-                    <img src="https://picsum.photos/id/1/600/400" alt="Tecnologia e Inovação">
-                    <span class="duration">10:25</span>
-                </div>
-                <div class="video-info">
-                    <h3>Tecnologia e Inovação em 2023</h3>
-                    <p>Descubra as últimas tendências tecnológicas que estão moldando o futuro.</p>
-                    <div class="metadata">
-                        <span><i class="far fa-eye"></i> 2.5K</span>
-                        <span><i class="far fa-calendar"></i> 2 dias atrás</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Vídeo 2 -->
-            <div class="video-card" data-category="Educação">
-                <div class="thumbnail">
-                    <img src="https://picsum.photos/id/20/600/400" alt="Aprendizado Online">
-                    <span class="duration">15:42</span>
-                </div>
-                <div class="video-info">
-                    <h3>Como Aprender Online com Eficiência</h3>
-                    <p>Dicas essenciais para maximizar seu aprendizado em plataformas digitais.</p>
-                    <div class="metadata">
-                        <span><i class="far fa-eye"></i> 3.1K</span>
-                        <span><i class="far fa-calendar"></i> 5 dias atrás</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Vídeo 3 -->
-            <div class="video-card" data-category="Entretenimento">
-                <div class="thumbnail">
-                    <img src="https://picsum.photos/id/40/600/400" alt="Cinema">
-                    <span class="duration">22:18</span>
-                </div>
-                <div class="video-info">
-                    <h3>Os Melhores Filmes do Ano</h3>
-                    <p>Confira nossa seleção dos filmes mais impressionantes deste ano.</p>
-                    <div class="metadata">
-                        <span><i class="far fa-eye"></i> 8.7K</span>
-                        <span><i class="far fa-calendar"></i> 1 semana atrás</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Vídeo 4 -->
-            <div class="video-card" data-category="Esportes">
-                <div class="thumbnail">
-                    <img src="https://picsum.photos/id/76/600/400" alt="Esportes Radicais">
-                    <span class="duration">08:53</span>
-                </div>
-                <div class="video-info">
-                    <h3>Esportes Radicais ao Redor do Mundo</h3>
-                    <p>Aventuras incríveis e esportes radicais para os amantes de adrenalina.</p>
-                    <div class="metadata">
-                        <span><i class="far fa-eye"></i> 4.2K</span>
-                        <span><i class="far fa-calendar"></i> 3 dias atrás</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Vídeo 5 -->
-            <div class="video-card" data-category="Viagens">
-                <div class="thumbnail">
-                    <img src="https://picsum.photos/id/96/600/400" alt="Destinos Exóticos">
-                    <span class="duration">18:34</span>
-                </div>
-                <div class="video-info">
-                    <h3>10 Destinos Exóticos para Conhecer</h3>
-                    <p>Lugares incríveis que você precisa visitar pelo menos uma vez na vida.</p>
-                    <div class="metadata">
-                        <span><i class="far fa-eye"></i> 6.3K</span>
-                        <span><i class="far fa-calendar"></i> 1 semana atrás</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Vídeo 6 -->
-            <div class="video-card" data-category="Tecnologia">
-                <div class="thumbnail">
-                    <img src="https://picsum.photos/id/100/600/400" alt="Programação">
-                    <span class="duration">12:07</span>
-                </div>
-                <div class="video-info">
-                    <h3>Introdução à Programação Web</h3>
-                    <p>Comece sua jornada no desenvolvimento web com estes conceitos básicos.</p>
-                    <div class="metadata">
-                        <span><i class="far fa-eye"></i> 5.8K</span>
-                        <span><i class="far fa-calendar"></i> 2 semanas atrás</span>
-                    </div>
-                </div>
-            </div>
+        <div class="video-grid" id="videoContainer">
+            <!-- Vídeos serão carregados via JavaScript -->
         </div>
     </div>
     
     <!-- Modal para reprodução de vídeo -->
     <div class="modal" id="videoModal">
         <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <div class="video-player">
-                <!-- Aqui iria o player de vídeo real -->
-                <div style="width:100%;height:100%;display:flex;justify-content:center;align-items:center;background:#000;color:white;">
-                    <p>Player de vídeo apareceria aqui</p>
-                </div>
+            <span class="close-btn" id="closeModal">&times;</span>
+            <div class="video-player-container">
+                <video id="videoPlayer" controls>
+                    Seu navegador não suporta a reprodução de vídeos.
+                </video>
             </div>
-            <h3 id="modalTitle"></h3>
-            <p id="modalDescription"></p>
+            <div class="video-info-modal">
+                <h3 id="modalTitle"></h3>
+                <p id="modalDescription"></p>
+            </div>
         </div>
     </div>
     
     <footer>
         <div class="container">
-            <p>Catálogo de Vídeos &copy; 2023 - Todos os direitos reservados</p>
+            <p>Catálogo de Vídeos &copy; 2023 - Desenvolvido por Fernando</p>
         </div>
     </footer>
 
     <script>
-        // Funcionalidade básica para o catálogo
-        document.addEventListener('DOMContentLoaded', function() {
-            const videoCards = document.querySelectorAll('.video-card');
-            const categoryButtons = document.querySelectorAll('.category-btn');
-            const modal = document.getElementById('videoModal');
-            const closeBtn = document.querySelector('.close-btn');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalDescription = document.getElementById('modalDescription');
+        // Dados dos vídeos (simulando um banco de dados)
+        const videos = [
+            {
+                id: 1,
+                title: "Tecnologia e Inovação em 2023",
+                description: "Descubra as últimas tendências tecnológicas que estão moldando o futuro. Neste vídeo, exploramos as inovações mais recentes em inteligência artificial, realidade aumentada e muito mais.",
+                category: "tecnologia",
+                duration: "10:25",
+                views: "2.5K",
+                date: "2 dias atrás",
+                thumbnail: "https://assets.codepen.io/85188/tech-thumb.jpg",
+                videoUrl: "https://assets.codepen.io/85188/tech-video.mp4"
+            },
+            {
+                id: 2,
+                title: "Maravilhas da Natureza",
+                description: "Uma jornada visual pelos lugares mais impressionantes do planeta. Das profundezas dos oceanos aos picos mais altos das montanhas, a natureza nunca para de nos surpreender.",
+                category: "natureza",
+                duration: "15:42",
+                views: "3.1K",
+                date: "5 dias atrás",
+                thumbnail: "https://assets.codepen.io/85188/nature-thumb.jpg",
+                videoUrl: "https://assets.codepen.io/85188/nature-video.mp4"
+            },
+            {
+                id: 3,
+                title: "Guia de Viagem para a Europa",
+                description: "Dicas essenciais para viajar pela Europa com orçamento limitado. Descubra os melhores destinos, como se locomover entre países e onde encontrar as comidas mais autênticas.",
+                category: "viagens",
+                duration: "22:18",
+                views: "8.7K",
+                date: "1 semana atrás",
+                thumbnail: "https://assets.codepen.io/85188/travel-thumb.jpg",
+                videoUrl: "https://assets.codepen.io/85188/travel-video.mp4"
+            },
+            {
+                id: 4,
+                title: "Introdução à Programação Web",
+                description: "Aprenda os conceitos básicos de HTML, CSS e JavaScript para iniciar sua carreira no desenvolvimento web. Este vídeo é perfeito para quem está dando os primeiros passos na programação.",
+                category: "educacao",
+                duration: "18:34",
+                views: "6.3K",
+                date: "3 dias atrás",
+                thumbnail: "https://assets.codepen.io/85188/code-thumb.jpg",
+                videoUrl: "https://assets.codepen.io/85188/code-video.mp4"
+            },
+            {
+                id: 5,
+                title: "O Futuro da Inteligência Artificial",
+                description: "Uma análise profunda sobre os avanços recentes em IA e como essa tecnologia está transformando indústrias e a sociedade como um todo. Especialistas compartilham suas visões para o futuro.",
+                category: "tecnologia",
+                duration: "28:15",
+                views: "4.2K",
+                date: "1 semana atrás",
+                thumbnail: "https://assets.codepen.io/85188/ai-thumb.jpg",
+                videoUrl: "https://assets.codepen.io/85188/ai-video.mp4"
+            },
+            {
+                id: 6,
+                title: "Vida Marinha: Recifes de Coral",
+                description: "Explore os coloridos ecossistemas dos recifes de coral e conheça as incríveis criaturas que habitam esses ambientes subaquáticos. Um mergulho visual em alta definição.",
+                category: "natureza",
+                duration: "12:07",
+                views: "5.8K",
+                date: "2 semanas atrás",
+                thumbnail: "https://assets.codepen.io/85188/ocean-thumb.jpg",
+                videoUrl: "https://assets.codepen.io/85188/ocean-video.mp4"
+            }
+        ];
+
+        // Elementos DOM
+        const videoContainer = document.getElementById('videoContainer');
+        const videoModal = document.getElementById('videoModal');
+        const videoPlayer = document.getElementById('videoPlayer');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const closeModal = document.getElementById('closeModal');
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+
+        // Função para renderizar os vídeos
+        function renderVideos(videosArray) {
+            videoContainer.innerHTML = '';
             
-            // Filtro de categorias
-            categoryButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const category = button.textContent;
-                    
-                    // Atualizar botão ativo
-                    categoryButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    
-                    // Filtrar vídeos
-                    videoCards.forEach(card => {
-                        if (category === 'Todos' || card.getAttribute('data-category') === category) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
+            videosArray.forEach(video => {
+                const videoCard = document.createElement('div');
+                videoCard.className = 'video-card';
+                videoCard.setAttribute('data-category', video.category);
+                videoCard.innerHTML = `
+                    <div class="thumbnail">
+                        <img src="${video.thumbnail}" alt="${video.title}">
+                        <div class="play-icon">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <span class="duration">${video.duration}</span>
+                    </div>
+                    <div class="video-info">
+                        <h3>${video.title}</h3>
+                        <p>${video.description.substring(0, 80)}...</p>
+                        <div class="metadata">
+                            <span><i class="far fa-eye"></i> ${video.views}</span>
+                            <span><i class="far fa-calendar"></i> ${video.date}</span>
+                        </div>
+                    </div>
+                `;
+                
+                videoCard.addEventListener('click', () => {
+                    playVideo(video);
                 });
+                
+                videoContainer.appendChild(videoCard);
+            });
+        }
+
+        // Função para reproduzir vídeo
+        function playVideo(video) {
+            modalTitle.textContent = video.title;
+            modalDescription.textContent = video.description;
+            videoPlayer.src = video.videoUrl;
+            videoModal.style.display = 'flex';
+            
+            // Quando o vídeo terminar, esconder o modal
+            videoPlayer.onended = function() {
+                // videoModal.style.display = 'none';
+            };
+            
+            // Reproduzir o vídeo
+            videoPlayer.play();
+        }
+
+        // Fechar modal
+        closeModal.addEventListener('click', () => {
+            videoModal.style.display = 'none';
+            videoPlayer.pause();
+        });
+
+        // Fechar modal clicando fora
+        window.addEventListener('click', (event) => {
+            if (event.target === videoModal) {
+                videoModal.style.display = 'none';
+                videoPlayer.pause();
+            }
+        });
+
+        // Funcionalidade de busca
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const activeCategory = document.querySelector('.category-btn.active').getAttribute('data-category');
+            
+            const filteredVideos = videos.filter(video => {
+                const matchesSearch = video.title.toLowerCase().includes(searchTerm) || 
+                                     video.description.toLowerCase().includes(searchTerm);
+                const matchesCategory = activeCategory === 'all' || video.category === activeCategory;
+                
+                return matchesSearch && matchesCategory;
             });
             
-            // Abrir modal ao clicar em um vídeo
-            videoCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    const title = card.querySelector('h3').textContent;
-                    const description = card.querySelector('p').textContent;
+            renderVideos(filteredVideos);
+        }
+
+        // Filtro de categorias
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const category = button.getAttribute('data-category');
+                
+                // Atualizar botão ativo
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Filtrar vídeos
+                const searchTerm = searchInput.value.toLowerCase();
+                const filteredVideos = videos.filter(video => {
+                    const matchesSearch = video.title.toLowerCase().includes(searchTerm) || 
+                                         video.description.toLowerCase().includes(searchTerm);
+                    const matchesCategory = category === 'all' || video.category === category;
                     
-                    modalTitle.textContent = title;
-                    modalDescription.textContent = description;
-                    modal.style.display = 'flex';
+                    return matchesSearch && matchesCategory;
                 });
+                
+                renderVideos(filteredVideos);
             });
-            
-            // Fechar modal
-            closeBtn.addEventListener('click', () => {
-                modal.style.display = 'none';
-            });
-            
-            // Fechar modal clicando fora dele
-            window.addEventListener('click', (event) => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
+        });
+
+        // Inicializar a página
+        document.addEventListener('DOMContentLoaded', () => {
+            renderVideos(videos);
         });
     </script>
 </body>
